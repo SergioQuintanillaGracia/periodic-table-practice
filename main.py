@@ -1,5 +1,6 @@
 from tkinter import *
 from customtkinter import *
+import random
 
 root = Tk()
 root.title("Configuraciones Electrónicas")
@@ -37,7 +38,7 @@ def get_real_position(element):
 
 
 def get_configuration(x, y):
-    config = ""
+    config = "Internal Error"
 
     if y == 1:
         if x == 1:
@@ -45,13 +46,62 @@ def get_configuration(x, y):
         if x == 8:
             config = ("1s2",)
 
-    if y <= 2 and y >= 
+    if y == 2 or y == 3:
+        if x <= 2:
+            config = (f"{y}s{x}",)
+        if x > 2:
+            config = (f"{y}s2", f"{y}p{x-2}")
+    
+    if y == 4 or y == 5:
+        if x <= 2:
+            config = (f"{y}s{x}",)
+        if x > 2:
+            config = (f"{y}s2", f"{y-1}d10", f"{y}p{x-2}")
+
+    return config
+
+
+def next_element():
+    element_string = ""
+    for i in elements:
+        for j in i:
+            if j != None:
+                element_string += f"{j} "
+    element_string = element_string[:-1]
+
+    element_list = element_string.split(" ")
+
+    random_element = random.choice(element_list)
+    element_label.configure(text = random_element.capitalize())
 
 
 def enter_pressed(event):
+    wrong = False
+
     element = element_label.text
+    element_position = get_real_position(element.lower())
+    element_configuration = get_configuration(element_position[0], element_position[1])
     userinput = userinput_entry.get()
-    print(get_real_position(element.lower()))
+    userconfig_list = userinput.split(" ")
+
+    if len(userconfig_list) != len(element_configuration):
+        for i in userconfig_list:
+            if i not in element_configuration:
+                wrong = True
+    else:
+        wrong = True
+
+    if wrong:
+        configuration = ""
+        for i in element_configuration:
+            configuration += f"{element_configuration} "
+
+        correction_label.configure(text = f"ERROR | Forma correcta: {element} - {configuration}")
+    
+    else:
+        correction_label.configure(text = "¡Correcto!")
+
+    next_element()
 
 
 root.bind("<Return>", enter_pressed)
@@ -81,7 +131,7 @@ userinput_entry.place(relx = 0.6, rely = 0.5, anchor = CENTER)
 
 
 correction_label = CTkLabel(
-    text = "Mucha suerte!",
+    text = "¡Mucha suerte!",
     text_font = ("Arial", 16, "bold"),
     master = root,
     fg_color = "#9EA6A9",
