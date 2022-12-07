@@ -2,6 +2,8 @@ from tkinter import *
 from customtkinter import *
 import random
 
+# V1.0
+
 root = Tk()
 root.title("Configuraciones Electrónicas")
 root.geometry("500x300")
@@ -114,11 +116,16 @@ def enter_pressed(event):
 
         streak = 0
         streak_label.configure(text = f"RACHA:\n{streak}")
+
+        correction_label.configure(fg_color = "#E84C3D")
     
     else:
         correction_label.configure(text = "¡Correcto!")
+
         streak += 1
         streak_label.configure(text = f"RACHA:\n{streak}")
+
+        correction_label.configure(fg_color = "#2DCC70")
 
     next_element()
 
@@ -154,7 +161,7 @@ element_label = CTkLabel(
     text = "Na",
     text_font = ("Arial", 30, "bold"),
     master = root,
-    fg_color = "#9EA6A9",
+    fg_color = "#1ABB9A",
     corner_radius = 12,
     width = 80,
     height = 60)
