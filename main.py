@@ -90,7 +90,7 @@ def enter_pressed(event):
 
     wrong = False
 
-    element = element_label.text
+    element = element_label.cget("text")
     element_position = get_real_position(element.lower())
     element_configuration = get_configuration(element_position[0], element_position[1])
     userinput = userinput_entry.get()
@@ -135,7 +135,7 @@ root.bind("<Return>", enter_pressed)
 
 info_label = CTkLabel(
     text = "NOTA: Presiona enter cuando hayas     \ncompletado la configuración electrónica\npara pasar al siguiente elemento.           ",
-    text_font = ("Arial", 13),
+    font = ("Arial", 19),
     master = root,
     fg_color = "#9EA6A9",
     corner_radius = 12,
@@ -147,7 +147,7 @@ info_label.place(x = 10, y = 10)
 
 streak_label = CTkLabel(
     text = f"RACHA:\n{streak}",
-    text_font = ("Arial", 13),
+    font = ("Arial", 19),
     master = root,
     fg_color = "#9EA6A9",
     corner_radius = 12,
@@ -159,7 +159,7 @@ streak_label.place(x = 390, y = 25)
 
 element_label = CTkLabel(
     text = "Na",
-    text_font = ("Arial", 30, "bold"),
+    font = ("Arial", 30, "bold"),
     master = root,
     fg_color = "#1ABB9A",
     corner_radius = 12,
@@ -170,7 +170,7 @@ element_label.place(x = 40, y = 145)
 
 userinput_entry = CTkEntry(
     placeholder_text = "Config. electrónica",
-    text_font = ("Arial", 14),
+    font = ("Arial", 14),
     master = root,
     width = 300,
     height = 40,
@@ -182,7 +182,7 @@ userinput_entry.place(x= 160, y = 155)
 
 correction_label = CTkLabel(
     text = "¡Mucha suerte!",
-    text_font = ("Arial", 14, "bold"),
+    font = ("Arial", 20, "bold"),
     master = root,
     fg_color = "#9EA6A9",
     corner_radius = 12,
