@@ -4,6 +4,8 @@ import random
 
 # V1.0
 
+# Works with customtkinter 5.2.2
+
 root = Tk()
 root.title("Configuraciones Electrónicas")
 root.geometry("500x300")
