@@ -95,7 +95,7 @@ def enter_pressed(event):
     element = element_label.cget("text")
     element_position = get_real_position(element.lower())
     element_configuration = get_configuration(element_position[0], element_position[1])
-    userinput = userinput_entry.get()
+    userinput = userinput_entry.get().lower()
 
     if " " in userinput:
         userconfig_list = userinput.split(" ")
